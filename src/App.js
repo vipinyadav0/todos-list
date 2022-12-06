@@ -3,9 +3,18 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Todos from './components/Todos/Todos';
 import Footer from './components/Footer/Footer';
+import AddTodo from './components/AddTodo/AddTodo';
 import React, { useState } from 'react';
 
+
 function App() {
+  let initTodo;
+  if (localStorage.getItem("todos") === null) {
+    initTodo = []
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todos"))
+  }
   const onDelete = (todo) => {
     // console.log("Im on delete of todo.", todo)
     setTodos(todos.filter((e) => {
@@ -13,42 +22,36 @@ function App() {
     }))
 
   }
-  const [todos, setTodos] = useState([{
-    sno: 1,
-    title: "Go to the f***** gym",
-    desc: "You need to go to f***** gym in order to build your body. You need to go to f***** gym in order to build your body u unsderstand mother fucker Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas, facilis iure fuga nisi, ab illo quam autem dolorum eius iste a. Totam sit explicabo corporis optio corrupti veniam accusantium!"
 
-  },
-  {
-    sno: 2,
-    title: "Go to the f***** gym",
-    desc: "You need to go to f***** gym in order to build your body.You need to go to f***** gym in order to build your body u unsderstand mother fucker Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas, facilis iure fuga nisi, ab illo quam autem dolorum eius iste a. Totam sit explicabo corporis optio corrupti veniam accusantium!"
 
-  },
-  {
-    sno: 3,
-    title: "Go to the f***** gym",
-    desc: "You need to go to f***** gym in order to build your body."
-  },
-  {
-    sno: 4,
-    title: "Go to the f***** gym",
-    desc: "You need to go to f***** gym in order to build your body. You need to go to f***** gym in order to build your body u unsderstand mother fucker Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas, facilis iure fuga nisi, ab illo quam autem dolorum eius iste a. Totam sit explicabo corporis optio corrupti veniam accusantium!"
+  //Adding todos
+  const addTodo = (title, desc) => {
+    // console.log("ADDING...", title, desc)
+    let sno;
+    if (todos.length === 0) {
+      sno = 1;
+    } else {
+      sno = todos[todos.length - 1].sno + 1
+    }
+    const myTodo = {
+      sno: sno,
+      title: title,
+      desc: desc
+    }
+    setTodos([...todos, myTodo]);
+    console.log(myTodo)
 
-  },
-  {
-    sno: 5,
-    title: "Go to the f***** gym",
-    desc: "You need to go to f***** gym in order to build your body u unsderstand mother fucker Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas, facilis iure fuga nisi, ab illo quam autem dolorum eius iste a. Totam sit explicabo corporis optio corrupti veniam accusantium!"
   }
+  const [todos, setTodos] = useState([initTodo
   ])
 
   return (
     <>
+      <h1 class="">This is tailwind test.</h1>
       <Navbar logo="Todos List" />
+      <AddTodo addTodo={addTodo} />
       <Todos todos={todos} onDelete={onDelete} />
       <Footer />
-
     </>
   );
 }

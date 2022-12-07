@@ -1,5 +1,4 @@
 import './App.css';
-// import Navbar from "./components/navbar/navbar"
 import Navbar from './components/Navbar/Navbar';
 import Todos from './components/Todos/Todos';
 import Footer from './components/Footer/Footer';
@@ -47,7 +46,6 @@ function App() {
 
   return (
     <>
-      <h1 class="">This is tailwind test.</h1>
       <Navbar logo="Todos List" />
       <AddTodo addTodo={addTodo} />
       <Todos todos={todos} onDelete={onDelete} />

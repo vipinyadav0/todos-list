@@ -4,12 +4,12 @@ import React from 'react'
 // Just One Todo
 function TodoItem(props) {
   return (
-    <div class="ontainer">
+    <div class="container">
       <div class="pt-4 pl-4">
         <div class="rounded-lg shadow-lg bg-white ">
 
           <div class="p-6">
-            <h5 class="text-gray-900 text-xl font-medium mb-4">        {props.todo.title}
+            <h5 class="text-gray-900 text-xl font-medium mb-4">{props.todo.title}
             </h5>
             <p class="text-gray-700 text-base mb-4">
               {props.todo.desc}
